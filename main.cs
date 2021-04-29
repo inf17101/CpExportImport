@@ -8,9 +8,9 @@ namespace CpExportImport
     {
         static void Main(string[] args)
         {
-            string ip = "1.16.5.168";
+            string ip = "<ip>";
             string port = "443";
-            Session session = new Session(ip, port, "admin", "hallo123");
+            Session session = new Session(ip, port, "<user>", "<password>");
             session.Login();
 
             string payloadRulebase = "{\"offset\": 2, \"limit\": 2, \"name\": \"Network\", \"details-level\": \"standard\", \"use-object-dictionary\" : true}";
