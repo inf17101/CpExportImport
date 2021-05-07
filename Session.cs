@@ -45,6 +45,7 @@ namespace CpExportImport
             string jsonString = response.Result.Content.ReadAsStringAsync().Result;
             dynamic json = JObject.Parse(jsonString);
             Sid = Convert.ToString(json["sid"]);
+            Console.WriteLine(json);
         }
 
         public void Logout()
@@ -53,6 +54,18 @@ namespace CpExportImport
             string jsonString = response.Result.Content.ReadAsStringAsync().Result;
             dynamic json = JObject.Parse(jsonString);
             Console.WriteLine(json);
+        }
+
+        public dynamic ApiCall(string command, string payload)
+        {
+            if(command == "login" || command == "logout")
+                throw new ArgumentException("login and logout requires explicit methods.");
+            
+            string urlWithCommand = Url + command;
+            var response = ApiRequest.Post(urlWithCommand, payload, Sid);
+            string responseText = response.Result.Content.ReadAsStringAsync().Result;
+            dynamic jsonResponse = JObject.Parse(responseText);
+            return jsonResponse;
         }
     }
 
