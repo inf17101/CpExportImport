@@ -43,6 +43,7 @@ namespace CpExportImport
             string data = String.Format("{{\"user\": \"{0}\",\"password\": \"{1}\"}}", Username, Password);
             var response = ApiRequest.Post(Url + "login", data);
             string jsonString = response.Result.Content.ReadAsStringAsync().Result;
+            Console.WriteLine(jsonString);
             dynamic json = JObject.Parse(jsonString);
             Sid = Convert.ToString(json["sid"]);
             Console.WriteLine(json);
@@ -66,6 +67,11 @@ namespace CpExportImport
             string responseText = response.Result.Content.ReadAsStringAsync().Result;
             dynamic jsonResponse = JObject.Parse(responseText);
             return jsonResponse;
+        }
+
+        public dynamic Publish()
+        {
+            return ApiCall("publish", "{}");
         }
     }
 
