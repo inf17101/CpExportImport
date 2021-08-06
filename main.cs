@@ -8,6 +8,15 @@ namespace CpExportImport
 {
     class Program
     {
+        public static bool isDataCenterObject(dynamic item)
+        {
+            foreach(var key in item.Properties())
+            {
+                if(Convert.ToString(key).Contains("data-center"))
+                    return true;
+            }
+            return false;
+        }
         static void Main(string[] args)
         {
             string ip = "1.16.5.172";
@@ -31,32 +40,54 @@ namespace CpExportImport
                 sr.RemoveProperties(itemsToRemove, item);
                 if(!alreadyAddedItems.Contains(Convert.ToString(item["name"])) && !ignoredBuiltInTypes.Contains(Convert.ToString(item["type"])))
                 {
-                    string type = "add-" + Convert.ToString(item["type"]);
                     if(item["type"] == "group-with-exclusion")
                     {
                         Parser parser = new ParserGroupWithExclusion();
+                        parser.parse(item);
+                    }else if(item["type"] == "host")
+                    {
+                        Parser parser = new ParserHostObject();
                         parser.parse(item);
                     }else if(item["type"] == "network")
                     {
                         Parser parser = new ParserNetwork();
                         parser.parse(item);
-                    }else if(item["type"] == "updatable-object")
+                    }else if(item["type"] == "application-site")
                     {
+                        Parser parser = new ParserApplicationSite();
+                        parser.parse(item);
+                    }
+                    /*else if(isDataCenterObject(item))
+                    {
+                        Parser parser = new ParserDataCenterObject();
+                        parser.parse(item);
+                    }*/
+                    else if(item["type"] == "updatable-object")
+                    {
+                        /*
+                            steps:
+                                - check if updatable object is present in the predefined objects
+                                - if it is not present try to add it, otherwise remove the object out of the rulebase
+                                - if the object is present or could be added, use this object in the rulebase
+                                - if object was removed out of the rulebase print a userfriendly error message
+                        */
                         Parser parser = new ParserUpdatableObjects();
                         parser.parse(item);
                     }
-                    
-                    item.Remove("uid");
-                    Console.WriteLine(item);
+
+                    alreadyAddedItems.Add(Convert.ToString(item["name"]));
+                    item["name"] = item["name"] + "_overwritten";
+                    item.Add("ignore-warnings", true);
+                    string type = "add-" + Convert.ToString(item["type"]);
                     item.Remove("type");
+                    item.Remove("uid");
                     /*if(item.ContainsKey("cluster-members"))
                     {
                         item["members"] = item["cluster-members"];
                         item.Remove("cluster-members");
                     }*/
-                    alreadyAddedItems.Add(Convert.ToString(item["name"]));
-                    item["name"] = item["name"] + "_overwritten";
-                    item.Add("ignore-warnings", true);
+
+                    Console.WriteLine("Object Type: " + type);
                     dynamic res = session.ApiCall(type, Convert.ToString(item));
                     if(res.ContainsKey("message"))
                     {
