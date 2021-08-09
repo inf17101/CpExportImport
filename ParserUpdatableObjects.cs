@@ -4,7 +4,7 @@ namespace CpExportImport
 {
     class ParserUpdatableObjects : Parser
     {
-        public dynamic parse(dynamic item)
+        public dynamic parse(dynamic item, ObjectExporter exporter)
         {
             SearchReplace sr = new SearchReplace();
             dynamic newItem = sr.RemovePropertiesExcept(new List<string>(){

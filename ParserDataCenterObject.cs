@@ -4,7 +4,7 @@ namespace CpExportImport
 {
     class ParserDataCenterObject : Parser
     {
-        public dynamic parse(dynamic item)
+        public dynamic parse(dynamic item, ObjectExporter exporter)
         {   
             SearchReplace sr = new SearchReplace();
             if(item.ContainsKey("name-in-data-center"))

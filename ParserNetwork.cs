@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 namespace CpExportImport
 {
     class ParserNetwork : Parser
     {
-        public dynamic parse(dynamic item)
+        public dynamic parse(dynamic item, ObjectExporter exporter)
         {
             if(item.ContainsKey("mask-length4") && item.ContainsKey("subnet-mask"))
             {

@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CpExportImport
 {
-    class Session
+    public class Session
     {
         public string Sid 
         {
