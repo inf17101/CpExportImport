@@ -29,7 +29,7 @@ namespace CpExportImport
             string ip = "1.16.5.172";
             string port = "443";
             Session session = new Session(ip, port, "oklapper", "hallo123");
-            //session.Login();
+            session.Login();
             //RuleBaseExporter.ExportRulebase(10, "Network", "/root/ApiHttpRequests/output", session);
             //session.Logout();
             

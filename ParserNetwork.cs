@@ -12,6 +12,10 @@ namespace CpExportImport
             {
                 item.Remove("mask-length6");
             }
+
+            if(item.ContainsKey("groups"))
+                item.Remove("groups");
+
             return item;
         }
     }

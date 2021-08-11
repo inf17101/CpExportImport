@@ -53,6 +53,10 @@ namespace CpExportImport
                 {
                     Parser parser = new ParserNetwork();
                     parser.parse(item, this);
+                }else if(item["type"] == "group")
+                {
+                    ParserGroup parser = new ParserGroup();
+                    parser.parse(item, this);
                 }else if(item["type"] == "application-site")
                 {
                     Parser parser = new ParserApplicationSite();
