@@ -23,7 +23,7 @@ namespace CpExportImport
             //base directory for exported items
             string rootDir = "/root/ApiHttpRequests/output/";
             // read in all predefined objects of check point
-            var predefinedObjects = PredefinedObjectsReader.ReadPredefinedObjects("objects_R81.csv", ";");
+            var predefinedObjects = PredefinedObjectsReader.ReadPredefinedObjects("objects_R81.csv", delemiter:";");
 
             // parser all data and make it ready for export
             string ip = "1.16.5.172";

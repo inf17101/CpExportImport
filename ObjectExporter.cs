@@ -31,12 +31,26 @@ namespace CpExportImport
             _itemsToRemove = itemsToRemove;
             _rootDir = rootDir;
         }
+
+        public bool MustBeExported(dynamic item)
+        {
+            if(item.ContainsKey("name") && item.ContainsKey("type"))
+            {
+                string itemName = Convert.ToString(item["name"]);
+                string itemType = Convert.ToString(item["type"]);
+                return !(_predefinedObjects.ContainsKey(itemName) && Convert.ToString(_predefinedObjects[itemName]) == itemType) && 
+                !_alreadyAddedItems.ContainsKey(itemName) && !_ignoredBuiltInTypes.Contains(itemType);
+            }
+            return false;
+        }
+
         public void ExportObject(dynamic item)
         {
-            if(_predefinedObjects.ContainsKey(Convert.ToString(item["name"])))
+            /*if(_predefinedObjects.ContainsKey(Convert.ToString(item["name"])))
                 return;
 
-            if(!_alreadyAddedItems.ContainsKey(Convert.ToString(item["name"])) && !_ignoredBuiltInTypes.Contains(Convert.ToString(item["type"])))
+            if(!_alreadyAddedItems.ContainsKey(Convert.ToString(item["name"])) && !_ignoredBuiltInTypes.Contains(Convert.ToString(item["type"])))*/
+            if(MustBeExported(item))
             {
                 SearchReplace sr = new SearchReplace();
                 sr.RemoveProperties(_itemsToRemove, item);
