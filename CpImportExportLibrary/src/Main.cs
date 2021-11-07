@@ -33,9 +33,9 @@ namespace CpExportImport
             };
 
             // parse all data and make it ready for export
-            string ip = "1.16.2.230";
+            string ip = "";
             string port = "443";
-            Session session = new Session(ip, port, "oklapper", "hallo123");
+            Session session = new Session(ip, port, "username", "1234567");
             session.Login();
 
             List<string> itemsToRemove = new List<string>() { "uid", "tags", "domain", "icon", "meta-info", "read-only", "install-on", "custom-fields", "time" };
