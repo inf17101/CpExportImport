@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace CpExportImport
 {
-    class ParserApplicationSite : Parser
+    public class ParserApplicationSite : Parser
     {
         public dynamic parse(dynamic item, ObjectExporter exporter)
         {

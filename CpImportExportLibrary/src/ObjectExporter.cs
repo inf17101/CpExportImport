@@ -46,10 +46,6 @@ namespace CpExportImport
 
         public void ExportObject(dynamic item)
         {
-            /*if(_predefinedObjects.ContainsKey(Convert.ToString(item["name"])))
-                return;
-
-            if(!_alreadyAddedItems.ContainsKey(Convert.ToString(item["name"])) && !_ignoredBuiltInTypes.Contains(Convert.ToString(item["type"])))*/
             if(MustBeExported(item))
             {
                 SearchReplace sr = new SearchReplace();
@@ -81,8 +77,8 @@ namespace CpExportImport
                     Parser parser = new ParserDataCenterObject();
                     parser.parse(item);
                 }*/
-                else if(item["type"] == "updatable-object")
-                {
+                //else if(item["type"] == "updatable-object")
+                //{
                     /*
                         steps:
                             - check if updatable object is present in the predefined objects
@@ -90,9 +86,9 @@ namespace CpExportImport
                             - if the object is present or could be added, use this object in the rulebase
                             - if object was removed out of the rulebase print a userfriendly error message
                     */
-                    Parser parser = new ParserUpdatableObjects();
-                    parser.parse(item, this);
-                }
+                //    Parser parser = new ParserUpdatableObjects();
+                //   parser.parse(item, this);
+                //}
 
                 item.Remove("uid");
                 /* export object to File */
@@ -102,9 +98,8 @@ namespace CpExportImport
 
                 //Console.WriteLine(item["type"]);
                 _alreadyAddedItems.Add(Convert.ToString(item["name"]), Convert.ToString(item["type"]));
-                item["name"] = item["name"] + "_overwritten";
+                //item["name"] = item["name"] + "_overwritten";
                 item.Add("ignore-warnings", true);
-                string command = "add-" + Convert.ToString(item["type"]);
                 item.Remove("type");
                 //item.Remove("uid");
             }
