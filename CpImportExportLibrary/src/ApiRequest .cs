@@ -11,7 +11,7 @@ namespace CpExportImport
     class ApiRequest
     {
 
-        public static async Task<dynamic> Get(String url)
+        public static async Task<dynamic> Get(string url)
         {
             using (var client = new HttpClient())
             {

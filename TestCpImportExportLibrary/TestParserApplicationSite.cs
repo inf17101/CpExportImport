@@ -1,22 +1,21 @@
 using NUnit.Framework;
 using CpExportImport;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
 namespace TestCpImportExportLibrary
 {
+    /// <summary>Class <c>TestParserApplicationSite</c> tests the ParserApplicationSite to parse an application site object </summary>
     public class TestParserApplicationSite
     {
-        [SetUp]
-        public void Setup()
-        {
-
-        }
 
         [Test]
+        /// <summary>method <c>Parse_Test</c> test the parser of a application site object</summary>
         public void Parse_Test()
         {
-            string applicationSite1 = $@"{{
+            string applicationSiteInput = $@"{{
       ""uid"": ""00fa9e3c-35b8-0f65-e053-08241dc22da2"",
       ""name"": ""OCSP Protocol"",
       ""type"": ""application-site"",
@@ -55,10 +54,43 @@ namespace TestCpImportExportLibrary
       }},
       ""read-only"": false
     }}";
-            JObject o = JObject.Parse(applicationSite1);   
+
+     string applicationSiteExpected = $@"{{
+      ""name"": ""OCSP Protocol"",
+      ""type"": ""application-site"",
+      ""application-id"": 10075086,
+      ""primary-category"": ""Network Protocols"",
+      ""description"": ""The Online Certificate Status Protocol (OCSP) is an Internet protocol used for obtaining the revocation status of an X.509 digital certificate. It was created as an alternative to certificate revocation lists."",
+      ""risk"": ""Very Low"",
+      ""user-defined"": false,
+      ""additional-categories"": [[
+        ""Very Low Risk"",
+        ""Encrypts communications"",
+        ""Network Protocols""
+      ]],
+      ""comments"": """",
+      ""color"": ""black"",
+      ""icon"": ""@app/10075086_2"",
+      ""tags"": [[]]
+    }}";
+            JObject input = JObject.Parse(applicationSiteInput);
             Parser parser = new ParserApplicationSite();
-            dynamic result = parser.parse(o, null);
-            Assert.AreEqual(result, o);
+            JObject result = parser.parse(input, null);
+            JObject expected = JObject.Parse(applicationSiteExpected);
+            Assert.AreEqual(expected.Count, result.Count);
+            Assert.AreEqual(expected, result); // does not validate keys of the Json Object
+
+            var expectedToDict = expected.ToObject<Dictionary<string, object>>();
+            var expectedKeys = (from r in expectedToDict
+                                let key = r.Key
+                                select key).ToList();
+
+            var resultToDict = result.ToObject<Dictionary<string, object>>();
+            var resultKeys = (from r in resultToDict
+                              let key = r.Key
+                              select key).ToList();
+
+            CollectionAssert.AreEqual(expectedKeys, resultKeys);
         }
     }
 }

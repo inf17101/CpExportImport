@@ -24,7 +24,7 @@ namespace CpExportImport
             //base directory for exported items
             string rootDir = "../../../output/";
             // read in all predefined objects of check point
-            var predefinedObjects = PredefinedObjectsReader.ReadPredefinedObjects("../../../predefined_objects/objects_R81.csv", delemiter: ";");
+            var predefinedObjects = PredefinedObjectsReader.ReadPredefinedObjects("../../../predefined_objects/objects_R81.csv", delemiter: ';');
 
             var checkPointObjectMappings = new Dictionary<string, string>()
             {

@@ -61,7 +61,7 @@ namespace CpExportImport
             int amountOfRules = rulebase.Count;
             for (int i=0; i < amountOfRules; ++i)
             {
-                List<string> itemsToRemove = new() { "uid", "domain", "icon", "meta-info", "read-only", "custom-fields", "rule-number", "from", "to" };
+                List<string> itemsToRemove = new List<string>() { "uid", "domain", "icon", "meta-info", "read-only", "custom-fields", "rule-number", "from", "to" };
                 RemoveProperties(itemsToRemove, rulebase[i]);
                 if (rulebase[i]["type"] == "access-section")
                 {

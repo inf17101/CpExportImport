@@ -16,7 +16,7 @@ namespace CpExportImport
             if(!dict.ContainsKey(key))
                 dict.Add(key, value);
         }
-        public static Dictionary<string,string> ReadPredefinedObjects(string filename, string delemiter)
+        public static Dictionary<string,string> ReadPredefinedObjects(string filename, char delemiter)
         {
             var predefinedObjects = new Dictionary<string, string>();
             try

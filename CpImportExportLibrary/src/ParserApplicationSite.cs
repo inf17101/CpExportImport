@@ -9,8 +9,8 @@ namespace CpExportImport
             SearchReplace sr = new SearchReplace();
             dynamic newItem = sr.RemovePropertiesExcept(new List<string>(){
                 "type", "name", "primary-category", "url-list", "application-signature", "tags", 
-                "additional-categories", "description", "urls-defined-as-regular-expression",
-                "color", "comments", "details-level", "groups", "ignore-warnings", "ignore-errors" },
+                "user-defined", "application-id", "additional-categories", "description", "icon", "risk",
+                "urls-defined-as-regular-expression", "color", "comments", "details-level", "groups", "ignore-warnings", "ignore-errors" },
                 item
                 );
             return newItem;
