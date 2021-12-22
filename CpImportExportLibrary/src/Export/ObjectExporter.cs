@@ -1,10 +1,12 @@
 using System;
 using System.IO;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using CpImportExportLibrary.src.ApiOperations;
+using CpImportExportLibrary.src.Helpers;
+using CpImportExportLibrary.src.Parser;
+using CpImportExportLibrary.src.FileWriter;
 
-namespace CpExportImport
+namespace CpImportExportLibrary.src.Export
 {
     public class ObjectExporter
     {
@@ -53,15 +55,15 @@ namespace CpExportImport
 
                 if(item["type"] == "group-with-exclusion")
                 {
-                    Parser parser = new ParserGroupWithExclusion();
+                    IParser parser = new ParserGroupWithExclusion();
                     parser.parse(item, this);
                 }else if(item["type"] == "host")
                 {
-                    Parser parser = new ParserHostObject();
+                    IParser parser = new ParserHostObject();
                     parser.parse(item, this);
                 }else if(item["type"] == "network")
                 {
-                    Parser parser = new ParserNetwork();
+                    IParser parser = new ParserNetwork();
                     parser.parse(item, this);
                 }else if(item["type"] == "group")
                 {
@@ -69,7 +71,7 @@ namespace CpExportImport
                     parser.parse(item, this);
                 }else if(item["type"] == "application-site")
                 {
-                    Parser parser = new ParserApplicationSite();
+                    IParser parser = new ParserApplicationSite();
                     parser.parse(item, this);
                 }
                 /*else if(isDataCenterObject(item))
@@ -94,14 +96,12 @@ namespace CpExportImport
                 /* export object to File */
                 string objectDir = _rootDir + "Objects/" + Convert.ToString(item["type"]);
                 Directory.CreateDirectory(objectDir);
-                FileWriter.ExportToFile(objectDir + $"/{item["type"]}.txt", item.ToString(), delemiter:"\n---\n");
+                FileExporter.ExportToFile(objectDir + $"/{item["type"]}.txt", item.ToString(), delemiter:"\n---\n");
 
                 //Console.WriteLine(item["type"]);
                 _alreadyAddedItems.Add(Convert.ToString(item["name"]), Convert.ToString(item["type"]));
-                //item["name"] = item["name"] + "_overwritten";
                 item.Add("ignore-warnings", true);
                 item.Remove("type");
-                //item.Remove("uid");
             }
 
         }

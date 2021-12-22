@@ -1,8 +1,9 @@
-namespace CpExportImport
+
+namespace CpImportExportLibrary.src.Parser
 {
     class ParserFactory
     {
-        static Parser CreateParser(dynamic item)
+        public static IParser CreateParser(dynamic item)
         {
             return new ParserHostObject();
         }

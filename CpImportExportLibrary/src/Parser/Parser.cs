@@ -1,8 +1,8 @@
-using System.Collections.Generic;
+using CpImportExportLibrary.src.Export;
 
-namespace CpExportImport
+namespace CpImportExportLibrary.src.Parser
 {
-    public interface Parser
+    public interface IParser
     {
         dynamic parse(dynamic item, ObjectExporter exporter);
     }

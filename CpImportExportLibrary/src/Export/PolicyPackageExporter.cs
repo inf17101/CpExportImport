@@ -1,6 +1,9 @@
-﻿using System;
+﻿using CpImportExportLibrary.src.ApiOperations;
+using CpImportExportLibrary.src.FileWriter;
+using System;
 using System.IO;
-namespace CpExportImport
+
+namespace CpImportExportLibrary.src.Export
 {
     class PolicyPackageExporter
     {

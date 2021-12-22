@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Threading;
-using System.IO;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using CpImportExportLibrary.src.ApiOperations;
+using CpImportExportLibrary.src.Export;
 
 /* mcs /reference:Newtonsoft.Json.dll *.cs -r:System.Net.Http /out:programm.exe */
 namespace CpExportImport
@@ -35,7 +33,7 @@ namespace CpExportImport
             // parse all data and make it ready for export
             string ip = "1.16.2.230";
             string port = "443";
-            Session session = new Session(ip, port, "username", "password");
+            Session session = new Session(ip, port, "admin", "hallo123");
             session.Login();
 
             List<string> itemsToRemove = new List<string>() { "uid", "tags", "domain", "icon", "meta-info", "read-only", "install-on", "custom-fields", "time" };

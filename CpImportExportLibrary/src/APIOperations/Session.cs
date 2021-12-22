@@ -2,8 +2,11 @@ using System;
 using Newtonsoft.Json.Linq;
 
 
-namespace CpExportImport
+namespace CpImportExportLibrary.src.ApiOperations
 {
+    /// <summary>
+    /// This class manages a CheckPoint API session like login, get, put or post to the api and finally logout
+    /// </summary>
     public class Session
     {
         public string Sid 

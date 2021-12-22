@@ -1,6 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
-namespace CpExportImport
+namespace CpImportExportLibrary.src.Helpers
 {
     class DictionaryOperations
     {

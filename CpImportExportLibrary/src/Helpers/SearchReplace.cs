@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
-namespace CpExportImport
+namespace CpImportExportLibrary.src.Helpers
 {
     class SearchReplace
     {

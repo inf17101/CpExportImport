@@ -1,5 +1,8 @@
+using CpImportExportLibrary.src.ApiOperations;
+using CpImportExportLibrary.src.FileWriter;
 using System;
-namespace CpExportImport
+
+namespace CpImportExportLibrary.src.Export
 {
     class RuleBaseExporter
     {

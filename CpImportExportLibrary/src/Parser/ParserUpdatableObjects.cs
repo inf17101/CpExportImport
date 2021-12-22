@@ -1,8 +1,10 @@
+using CpImportExportLibrary.src.Export;
+using CpImportExportLibrary.src.Helpers;
 using System.Collections.Generic;
 
-namespace CpExportImport
+namespace CpImportExportLibrary.src.Parser
 {
-    class ParserUpdatableObjects : Parser
+    class ParserUpdatableObjects : IParser
     {
         public dynamic parse(dynamic item, ObjectExporter exporter)
         {

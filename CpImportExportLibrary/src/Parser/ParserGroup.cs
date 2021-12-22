@@ -1,8 +1,9 @@
+using CpImportExportLibrary.src.Export;
 using System;
 
-namespace CpExportImport
+namespace CpImportExportLibrary.src.Parser
 {
-    class ParserGroup : Parser
+    class ParserGroup : IParser
     {
         public dynamic parse(dynamic item, ObjectExporter exporter)
         {

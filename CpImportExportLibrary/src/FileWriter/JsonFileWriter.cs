@@ -1,6 +1,7 @@
 using System;
 using System.IO;
-namespace CpExportImport
+
+namespace CpImportExportLibrary.src.FileWriter
 {
     class JsonFileWriter
     {
@@ -8,11 +9,10 @@ namespace CpExportImport
         {
             try
             {
-                using(var writer = new StreamWriter(path))
-                {
-                    writer.Write(jsonString);
-                }
-            }catch(Exception e)
+                using var writer = new StreamWriter(path);
+                writer.Write(jsonString);
+            }
+            catch(Exception e)
             {
                 Console.WriteLine($"ERROR: Could not write file.\nCause:{e.Message}");
             }

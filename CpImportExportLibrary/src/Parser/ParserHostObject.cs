@@ -1,10 +1,9 @@
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+using CpImportExportLibrary.src.Export;
 
-namespace CpExportImport
+namespace CpImportExportLibrary.src.Parser
 {
-    class ParserHostObject : Parser
+    class ParserHostObject : IParser
     {
         public dynamic parse(dynamic item, ObjectExporter exporter)
         {
