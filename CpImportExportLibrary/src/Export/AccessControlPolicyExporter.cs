@@ -7,13 +7,13 @@ namespace CpImportExportLibrary.src.Export
 {
     class AccessControlPolicyExporter
     {
-        private Session _session;
-        private ObjectExporter _objectExporter;
+        private ISession _session;
+        private IObjectExporter _objectExporter;
         private dynamic _policyPackageInformation;
         private string _outPath;
         private static readonly int _amountOfRulesPerQuery = 10;
 
-        public AccessControlPolicyExporter(Session session, ObjectExporter objectExporter, dynamic policyPackageInformation, string outpath)
+        public AccessControlPolicyExporter(ISession session, IObjectExporter objectExporter, dynamic policyPackageInformation, string outpath)
         {
             _session = session;
             _objectExporter = objectExporter;
@@ -55,7 +55,6 @@ namespace CpImportExportLibrary.src.Export
                         _objectExporter.ExportObject(item);
                     }
                 }
-                    
             }
         }
         

@@ -6,7 +6,7 @@ namespace CpImportExportLibrary.src.Export
 {
     class RuleBaseExporter
     {
-        public static void ExportRulebase(int limit, string accessLayerName, string path, Session session)
+        public static void ExportRulebase(int limit, string accessLayerName, string path, ISession session)
         {
             int offset = 0, round = 0;
             JsonFileWriter writer = new JsonFileWriter();

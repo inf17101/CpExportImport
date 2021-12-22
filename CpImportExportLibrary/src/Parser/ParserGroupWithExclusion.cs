@@ -6,7 +6,7 @@ namespace CpImportExportLibrary.src.Parser
 {
     class ParserGroupWithExclusion : IParser
     {
-        public dynamic parse(dynamic item, ObjectExporter exporter)
+        public void Parse(dynamic item, IObjectExporter exporter)
         {
 
             if(item.ContainsKey("include"))
@@ -32,8 +32,6 @@ namespace CpImportExportLibrary.src.Parser
                     exporter.ExportObject((JObject) exceptItem);
                 }
             }
-
-            return item;
         }
     }
 

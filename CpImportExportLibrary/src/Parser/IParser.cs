@@ -4,6 +4,6 @@ namespace CpImportExportLibrary.src.Parser
 {
     public interface IParser
     {
-        dynamic parse(dynamic item, ObjectExporter exporter);
+        public void Parse(dynamic item, IObjectExporter exporter);
     }
 }

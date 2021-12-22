@@ -1,11 +1,35 @@
 
 namespace CpImportExportLibrary.src.Parser
 {
-    class ParserFactory
+    public class ParserFactory
     {
-        public static IParser CreateParser(dynamic item)
+        /// <summary>
+        /// this class is an factory to create parsers depending on the api type of the object
+        /// </summary>
+        public static IParser CreateParser(string apiType)
         {
-            return new ParserHostObject();
+            if (apiType == "group-with-exclusion")
+            {
+                return new ParserGroupWithExclusion();
+            }
+            else if (apiType == "host")
+            {
+                return new ParserHostObject();
+            }
+            else if (apiType == "network")
+            {
+                return new ParserNetwork();
+            }
+            else if (apiType == "group")
+            {
+                return new ParserGroup();
+            }
+            else if (apiType == "application-site")
+            {
+                return new ParserApplicationSite();
+            }
+            
+            return new NullObjectParser();
         }
     }
 }

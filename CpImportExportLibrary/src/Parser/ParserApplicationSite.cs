@@ -6,7 +6,7 @@ namespace CpImportExportLibrary.src.Parser
 {
     public class ParserApplicationSite : IParser
     {
-        public dynamic parse(dynamic item, ObjectExporter exporter)
+        public void Parse(dynamic item, IObjectExporter exporter)
         {
             SearchReplace sr = new SearchReplace();
             dynamic newItem = sr.RemovePropertiesExcept(new List<string>(){
@@ -14,7 +14,6 @@ namespace CpImportExportLibrary.src.Parser
                 "user-defined", "application-id", "additional-categories", "description", "icon", "risk",
                 "urls-defined-as-regular-expression", "color", "comments", "details-level", "groups", "ignore-warnings", "ignore-errors" },
                 item);
-            return newItem;
         }
     }
 }

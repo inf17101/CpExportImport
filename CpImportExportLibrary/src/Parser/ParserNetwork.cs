@@ -4,7 +4,7 @@ namespace CpImportExportLibrary.src.Parser
 {
     class ParserNetwork : IParser
     {
-        public dynamic parse(dynamic item, ObjectExporter exporter)
+        public void Parse(dynamic item, IObjectExporter exporter)
         {
             if(item.ContainsKey("mask-length4") && item.ContainsKey("subnet-mask"))
             {
@@ -16,8 +16,6 @@ namespace CpImportExportLibrary.src.Parser
 
             if(item.ContainsKey("groups"))
                 item.Remove("groups");
-
-            return item;
         }
     }
 }

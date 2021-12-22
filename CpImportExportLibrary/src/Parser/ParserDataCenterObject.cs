@@ -6,7 +6,7 @@ namespace CpImportExportLibrary.src.Parser
 {
     class ParserDataCenterObject : IParser
     {
-        public dynamic parse(dynamic item, ObjectExporter exporter)
+        public void Parse(dynamic item, IObjectExporter exporter)
         {   
             SearchReplace sr = new SearchReplace();
             if(item.ContainsKey("name-in-data-center"))
@@ -25,7 +25,6 @@ namespace CpImportExportLibrary.src.Parser
                 newItem.Remove("name");
             }
             newItem.Add("type", "data-center-object"); // change type to data center object
-            return newItem;
         }
     }
 }

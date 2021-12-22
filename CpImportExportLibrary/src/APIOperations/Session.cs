@@ -7,27 +7,27 @@ namespace CpImportExportLibrary.src.ApiOperations
     /// <summary>
     /// This class manages a CheckPoint API session like login, get, put or post to the api and finally logout
     /// </summary>
-    public class Session
+    public class Session : ISession
     {
-        public string Sid 
+        public string Sid
         {
             get;
             private set;
         }
 
-        public string Url 
+        public string Url
         {
             get;
             private set;
         }
 
-        public string Username 
+        public string Username
         {
             get;
             private set;
         }
 
-        public string Password 
+        public string Password
         {
             get;
             private set;
@@ -62,9 +62,9 @@ namespace CpImportExportLibrary.src.ApiOperations
 
         public dynamic ApiCall(string command, string payload)
         {
-            if(command == "login" || command == "logout")
+            if (command == "login" || command == "logout")
                 throw new ArgumentException("login and logout requires explicit methods.");
-            
+
             string urlWithCommand = Url + command;
             var response = ApiRequest.Post(urlWithCommand, payload, Sid);
             string responseText = response.Result.Content.ReadAsStringAsync().Result;

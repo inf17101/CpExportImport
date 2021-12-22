@@ -74,17 +74,17 @@ namespace TestCpImportExportLibrary.TestParsers
             }}";
             JObject input = JObject.Parse(applicationSiteInput);
             IParser parser = new ParserApplicationSite();
-            JObject result = parser.parse(input, null);
+            parser.Parse(input, null);
             JObject expected = JObject.Parse(applicationSiteExpected);
-            Assert.AreEqual(expected.Count, result.Count);
-            Assert.AreEqual(expected, result); // does not validate keys of the Json Object
+            Assert.AreEqual(expected.Count, input.Count);
+            Assert.AreEqual(expected, input); // does not validate keys of the Json Object
 
             var expectedToDict = expected.ToObject<Dictionary<string, object>>();
             var expectedKeys = (from r in expectedToDict
                                 let key = r.Key
                                 select key).ToList();
 
-            var resultToDict = result.ToObject<Dictionary<string, object>>();
+            var resultToDict = input.ToObject<Dictionary<string, object>>();
             var resultKeys = (from r in resultToDict
                               let key = r.Key
                               select key).ToList();
@@ -99,10 +99,10 @@ namespace TestCpImportExportLibrary.TestParsers
             string emptyInput = $@"{{}}";
             JObject input = JObject.Parse(emptyInput);
             IParser parser = new ParserApplicationSite();
-            JObject result = parser.parse(input, null);
+            parser.Parse(input, null);
             JObject expected = JObject.Parse(emptyInput);
-            Assert.AreEqual(expected.Count, result.Count);
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected.Count, input.Count);
+            Assert.AreEqual(expected, input);
         }
     }
 }

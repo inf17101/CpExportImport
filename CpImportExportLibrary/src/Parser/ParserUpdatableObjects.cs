@@ -6,15 +6,13 @@ namespace CpImportExportLibrary.src.Parser
 {
     class ParserUpdatableObjects : IParser
     {
-        public dynamic parse(dynamic item, ObjectExporter exporter)
+        public void Parse(dynamic item, IObjectExporter exporter)
         {
             SearchReplace sr = new SearchReplace();
             dynamic newItem = sr.RemovePropertiesExcept(new List<string>(){
                 "type", "uri", "uid-in-updatable-objects-repository", "tags", 
                 "color", "comments", "details-level", "ignore-warnings", "ignore-errors" },
-                item
-                );
-            return newItem;
+                item);
         }
     }
 }

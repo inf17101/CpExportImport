@@ -7,10 +7,10 @@ namespace CpImportExportLibrary.src.Export
 {
     class PolicyPackageExporter
     {
-        private Session _session;
-        private ObjectExporter _exporter;
+        private ISession _session;
+        private IObjectExporter _exporter;
 
-        public PolicyPackageExporter(Session session, ObjectExporter exporter)
+        public PolicyPackageExporter(ISession session, IObjectExporter exporter)
         {
             _session = session;
             _exporter = exporter;
