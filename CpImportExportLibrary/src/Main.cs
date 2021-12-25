@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CpImportExportLibrary.src.ApiOperations;
 using CpImportExportLibrary.src.Export;
+using CpImportExportLibrary.src.FileReader;
 
 /* mcs /reference:Newtonsoft.Json.dll *.cs -r:System.Net.Http /out:programm.exe */
 namespace CpExportImport
@@ -22,7 +23,8 @@ namespace CpExportImport
             //base directory for exported items
             string rootDir = "../../../output/";
             // read in all predefined objects of check point
-            var predefinedObjects = PredefinedObjectsReader.ReadPredefinedObjects("../../../predefined_objects/objects_R81.csv", delemiter: ';');
+            var predefinedObjectsReader = new PredefinedObjectsReader(new CustomStreamReader(), "../../../predefined_objects/objects_R81.csv", delimiter: ';');
+            var predefinedObjects = predefinedObjectsReader.ReadPredefinedObjects();
 
             var checkPointObjectMappings = new Dictionary<string, string>()
             {
