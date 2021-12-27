@@ -2,7 +2,7 @@ using System.IO;
 
 namespace CpImportExportLibrary.src.FileWriter
 {
-    static class FileExporter
+    public class FileExporter
     {
         /// <summary>
         /// export object to file separated by delemiter in the file
