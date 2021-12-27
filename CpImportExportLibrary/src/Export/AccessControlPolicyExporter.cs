@@ -37,8 +37,7 @@ namespace CpImportExportLibrary.src.Export
                     break;
                 }
 
-                SearchReplace sr = new SearchReplace();
-                jresponse["rulebase"] = sr.ReplaceAllUidsInAccessRulesByName(jresponse["rulebase"], jresponse["objects-dictionary"]);
+                jresponse["rulebase"] = SearchReplace.ReplaceAllUidsInAccessRulesByName(jresponse["rulebase"], jresponse["objects-dictionary"]);
 
                 writer.Json2File($"{layerOutPath}/out{round}.json", Convert.ToString(jresponse));
                 offset += limit;

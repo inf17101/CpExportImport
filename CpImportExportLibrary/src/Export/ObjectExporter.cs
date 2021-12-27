@@ -50,8 +50,7 @@ namespace CpImportExportLibrary.src.Export
         {
             if (MustBeExported(item))
             {
-                SearchReplace sr = new SearchReplace();
-                sr.RemoveProperties(_itemsToRemove, item);
+                SearchReplace.RemoveProperties(_itemsToRemove, item);
                 string apiType = Convert.ToString(item["type"]);
                 string itemName = Convert.ToString(item["name"]);
 
@@ -59,15 +58,20 @@ namespace CpImportExportLibrary.src.Export
                 parser.Parse(item, this);
 
                 item.Remove("uid");
-                /* export object to File */
-                string objectDir = _rootDir + "Objects/" + apiType;
-                Directory.CreateDirectory(objectDir);
-                FileExporter.ExportToFile(objectDir + $"/{apiType}.txt", item.ToString(), delemiter: "\n---\n");
+                ExportObject(apiType, item.ToString());
 
                 _alreadyAddedItems.Add(itemName, apiType);
                 item.Add("ignore-warnings", true);
                 item.Remove("type");
             }
+        }
+
+        private void ExportObject(string apiType, string item)
+        {
+            /* export object to File */
+            string objectDir = _rootDir + "Objects/" + apiType;
+            Directory.CreateDirectory(objectDir);
+            FileExporter.ExportToFile(objectDir + $"/{apiType}.txt", item, delimiter: "\n---\n");
         }
     }
 }

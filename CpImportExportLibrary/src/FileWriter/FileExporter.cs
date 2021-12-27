@@ -10,17 +10,17 @@ namespace CpImportExportLibrary.src.FileWriter
         /// otherwise the file is being created first.    
         /// </summary>
 
-        public static void ExportToFile(string path, string data, string delemiter)
+        public static void ExportToFile(string path, string data, string delimiter)
         {
             if(!File.Exists(path))
             {
                 using StreamWriter sw = File.CreateText(path);
-                sw.Write(data + delemiter);
+                sw.Write(data + delimiter);
                 return;
             }
 
             using StreamWriter swAppender = File.AppendText(path);
-            swAppender.Write(data + delemiter);
+            swAppender.Write(data + delimiter);
         }
     }
 }

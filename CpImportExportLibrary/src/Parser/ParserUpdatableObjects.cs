@@ -8,8 +8,7 @@ namespace CpImportExportLibrary.src.Parser
     {
         public void Parse(dynamic item, IObjectExporter exporter)
         {
-            SearchReplace sr = new SearchReplace();
-            dynamic newItem = sr.RemovePropertiesExcept(new List<string>(){
+            SearchReplace.RemovePropertiesExcept(new List<string>(){
                 "type", "uri", "uid-in-updatable-objects-repository", "tags", 
                 "color", "comments", "details-level", "ignore-warnings", "ignore-errors" },
                 item);

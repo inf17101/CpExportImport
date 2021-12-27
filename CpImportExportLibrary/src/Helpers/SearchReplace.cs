@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace CpImportExportLibrary.src.Helpers
 {
-    class SearchReplace
+    public class SearchReplace
     {
-        public dynamic RemoveProperties(List<string> keys, dynamic json)
+        public static dynamic RemoveProperties(List<string> keys, dynamic json)
         {
             foreach(var item in keys)
             {
@@ -16,7 +16,7 @@ namespace CpImportExportLibrary.src.Helpers
             return json;
         }
 
-        public dynamic RemovePropertiesExcept(List<string> notToRemove, dynamic json)
+        public static dynamic RemovePropertiesExcept(List<string> notToRemove, dynamic json)
         {
             JObject clonedJson = (JObject) json.DeepClone();
             foreach(var item in clonedJson.Properties())
@@ -29,7 +29,7 @@ namespace CpImportExportLibrary.src.Helpers
             return json;
         }
 
-        private void ReplaceUidWithUidOfObjectsDictionary(dynamic rulePart, dynamic objectsDictionary)
+        private static void ReplaceUidWithUidOfObjectsDictionary(dynamic rulePart, dynamic objectsDictionary)
         {
             if (rulePart is JArray)
             {
@@ -56,7 +56,7 @@ namespace CpImportExportLibrary.src.Helpers
             }
         }
 
-        public dynamic ReplaceAllUidsInAccessRulesByName(dynamic rulebase, dynamic objectsDictionary)
+        public static dynamic ReplaceAllUidsInAccessRulesByName(dynamic rulebase, dynamic objectsDictionary)
         {
             int amountOfRules = rulebase.Count;
             for (int i=0; i < amountOfRules; ++i)
