@@ -13,17 +13,13 @@ namespace CpExportImport
         {
             if(!File.Exists(path))
             {
-                using (StreamWriter sw = File.CreateText(path))
-                {
-                    sw.Write(data + delemiter);
-                }
+                using StreamWriter sw = File.CreateText(path);
+                sw.Write(data + delemiter);
                 return;
             }
 
-            using (StreamWriter sw = File.AppendText(path))
-            {
-                sw.Write(data + delemiter);
-            }	
+            using StreamWriter swAppender = File.AppendText(path);
+            swAppender.Write(data + delemiter);
         }
     }
 }

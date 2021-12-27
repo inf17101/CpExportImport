@@ -7,7 +7,7 @@ using CpImportExportLibrary.src.Parser;
 namespace TestCpImportExportLibrary.TestParsers
 {
     /// <summary>Class <c>TestParserApplicationSite</c> tests the ParserApplicationSite to parse an application site object </summary>
-    public class TestParserApplicationSite
+    class TestParserApplicationSite
     {
 
         [Test]

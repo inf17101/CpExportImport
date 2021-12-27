@@ -27,23 +27,15 @@ namespace CpImportExportLibrary.src.FileReader
         public Dictionary<string,string> ReadPredefinedObjects()
         {
             var predefinedObjects = new Dictionary<string, string>();
-            try
+            using var reader = _streamReader.GetReader(_filename);
+            string line;
+            while ((line = reader.ReadLine()) != null)
             {
-                using var reader = _streamReader.GetReader(_filename);
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    string[] substrings = line.Split(_delimiter);
-                    if (!(HasLengthOf(substrings, 2)))
-                        throw new FormatException("Predefined Objects File seems to be corrupted.");
+                string[] substrings = line.Split(_delimiter);
+                if (!(HasLengthOf(substrings, 2)))
+                    throw new FormatException("Predefined Objects File seems to be corrupted.");
 
-                    AddToDict(ref predefinedObjects, substrings[0], substrings[1]);
-                }
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine($"ERROR: Could not read file.\nCause:{e.Message}");
-                return new Dictionary<string, string>();
+                AddToDict(ref predefinedObjects, substrings[0], substrings[1]);
             }
             return predefinedObjects;
         }
